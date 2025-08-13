@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación Familiar</title>
+
+    <link rel="icon" type="image/png" href="Fam.png">
     
     <meta property="og:title" content="¡Invitación Especial!">
     <meta property="og:description" content="Te invitamos a celebrar el dia de la Familia.">
@@ -21,6 +23,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow: hidden; /* Oculta los iconos que se salen de la pantalla */
         }
         
         .contenedor-invitacion {
@@ -31,6 +34,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             border-radius: 8px;
             overflow: hidden;
+            z-index: 10; /* Asegura que la invitación esté por encima de los iconos */
         }
 
         .invitacion-imagen {
@@ -41,7 +45,7 @@
         
         /* Estilos base para los enlaces de los botones */
         .boton-link {
-            position: absolute; /* Esto permite moverlos libremente dentro del contenedor */
+            position: absolute;
             border: none;
             cursor: pointer;
             text-decoration: none;
@@ -49,6 +53,7 @@
             padding: 0;
             width: 12vw;
             max-width: 33.3px;
+            z-index: 20; /* Asegura que los botones estén por encima de todo */
         }
 
         .boton-link img {
@@ -56,13 +61,13 @@
             height: auto;
         }
         
-        /* Estilos para el botón del formulario (ejemplo: arriba a la izquierda) */
+        /* Estilos para el botón del formulario */
         .boton-formulario {
             top: 57.5%;
             left: 45.6%;
         }
 
-        /* Estilos para el botón de GPS (ejemplo: abajo a la derecha) */
+        /* Estilos para el botón de GPS */
         .boton-gps {
             bottom: 22.5%;
             right: 71.6%;
@@ -82,6 +87,32 @@
                 right: 8%;
             }
         }
+        
+        /* Animación de los iconos de familia */
+        @keyframes subir {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .icono-animado {
+            position: fixed;
+            bottom: -50px;
+            width: 30px;
+            height: 30px;
+            animation: subir 8s linear infinite;
+            z-index: 5;
+        }
+
+        /* Variaciones de animación para darle un efecto más orgánico */
+        .icono-animado:nth-child(2n) { animation-duration: 9s; animation-delay: 2s; }
+        .icono-animado:nth-child(3n) { animation-duration: 7s; animation-delay: 4s; }
+        .icono-animado:nth-child(5n) { animation-duration: 10s; animation-delay: 1s; }
     </style>
 </head>
 <body>
@@ -97,6 +128,23 @@
             <img src="ub.png" alt="Ubicación GPS">
         </a>
     </div>
+
+    <script>
+        function crearIconos() {
+            const numIconos = 25; // Número de iconos a generar
+            const iconoSrc = "Fam.png"; // Nombre del archivo del icono
+            
+            for (let i = 0; i < numIconos; i++) {
+                let icono = document.createElement('img');
+                icono.src = iconoSrc;
+                icono.classList.add('icono-animado');
+                icono.style.left = `${Math.random() * 100}vw`; // Posición horizontal aleatoria
+                icono.style.animationDelay = `${Math.random() * 5}s`; // Retraso aleatorio
+                document.body.appendChild(icono);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', crearIconos);
+    </script>
 
 </body>
 </html>
