@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Invitación Familiar!</title>
+    
+    <meta property="og:title" content="¡Invitación Especial!">
+    <meta property="og:description" content="Te invitamos a un Campamento Familiar Cristiano en Manta.">
+    <meta property="og:image" content="https://deviouswind543.github.io/Dia_de_la_Familia/Invitacion%20Familia.jpg">
+    <meta property="og:url" content="https://deviouswind543.github.io/Dia_de_la_Familia/">
+    <meta property="og:type" content="website">
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .contenedor-invitacion {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .invitacion-imagen {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .contenedor-botones {
+            position: absolute;
+            bottom: 6.5%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            gap: 15vw;
+            width: 80%;
+        }
+
+        .boton-link {
+            display: block;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            background: none;
+            padding: 0;
+            width: 12vw;
+            max-width: 60px;
+        }
+
+        .boton-link img {
+            width: 100%;
+            height: auto;
+        }
+        
+        @media (max-width: 600px) {
+            .contenedor-botones {
+                bottom: 8%;
+                gap: 12vw;
+            }
+            .boton-link {
+                width: 15vw;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-invitacion">
+        <img src="Invitacion Familia.jpg" alt="Invitación Familiar" class="invitacion-imagen">
+        
+        <div class="contenedor-botones">
+            <a href="URL_DE_TU_FORMULARIO" class="boton-link" target="_blank" title="Confirmar Asistencia">
+                <img src="icono_formulario.png" alt="Formulario de Google">
+            </a>
+            
+            <a href="https://maps.google.com/?q=Campamento+Cristiano+Inspiracion,+Manta,+Ecuador" class="boton-link" target="_blank" title="Ver Ubicación">
+                <img src="icono_gps.png" alt="Ubicación GPS">
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
