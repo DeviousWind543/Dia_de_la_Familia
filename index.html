@@ -15,136 +15,138 @@
     
     <style>
         body {
-            font-family: sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
+            overflow-x: hidden;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            overflow: hidden; /* Oculta los iconos que se salen de la pantalla */
-        }
-        
-        .contenedor-invitacion {
+            padding: 20px;
+            box-sizing: border-box;
             position: relative;
-            width: 90%;
-            max-width: 600px;
-            margin: auto;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            z-index: 10; /* Asegura que la invitación esté por encima de los iconos */
         }
 
-        .invitacion-imagen {
+        #invitacion-container {
+            position: relative;
+            max-width: 650px;
+            width: 100%;
+            margin-top: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        #invitacion-imagen {
+            display: block;
             width: 100%;
             height: auto;
-            display: block;
         }
-        
-        /* Estilos base para los enlaces de los botones */
-        .boton-link {
+
+        .boton-icono {
             position: absolute;
+            z-index: 10;
+            display: block;
+            background: none;
             border: none;
             cursor: pointer;
             text-decoration: none;
-            background: none;
-            padding: 0;
-            width: 12vw;
-            max-width: 33.3px;
-            z-index: 20; /* Asegura que los botones estén por encima de todo */
+            transition: transform 0.3s ease;
         }
 
-        .boton-link img {
+        .boton-icono img {
             width: 100%;
             height: auto;
         }
+
+        .boton-icono:hover {
+            transform: scale(1.1);
+        }
         
-        /* Estilos para el botón del formulario */
+        /* Posiciones ajustadas para los botones, usando porcentajes */
         .boton-formulario {
-            top: 57.5%;
-            left: 45.6%;
+            top: 57.6%;
+            left: 45.9%;
+            width: 5.5%; /* Ajuste de tamaño para que sea más consistente */
         }
 
-        /* Estilos para el botón de GPS */
         .boton-gps {
-            bottom: 22.5%;
-            right: 71.6%;
+            bottom: 23%;
+            right: 71.8%;
+            width: 5%; /* Ajuste de tamaño para que sea más consistente */
         }
         
-        /* Media query para móviles, ajusta las posiciones si es necesario */
-        @media (max-width: 600px) {
-            .boton-link {
-                width: 15vw;
-            }
-            .boton-formulario {
-                top: 8%;
-                left: 8%;
-            }
-            .boton-gps {
-                bottom: 8%;
-                right: 8%;
-            }
-        }
-        
-        /* Animación de los iconos de familia */
-        @keyframes subir {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
+        /* Contenedor para los iconos flotantes */
+        #contenedor-animacion {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .icono-animado {
-            position: fixed;
+        .icono-flotante {
+            position: absolute;
             bottom: -50px;
-            width: 30px;
-            height: 30px;
-            animation: subir 8s linear infinite;
-            z-index: 5;
+            width: 25px;
+            height: auto;
+            opacity: 0;
+            animation: flotar 15s infinite linear;
         }
 
-        /* Variaciones de animación para darle un efecto más orgánico */
-        .icono-animado:nth-child(2n) { animation-duration: 9s; animation-delay: 2s; }
-        .icono-animado:nth-child(3n) { animation-duration: 7s; animation-delay: 4s; }
-        .icono-animado:nth-child(5n) { animation-duration: 10s; animation-delay: 1s; }
+        @keyframes flotar {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="contenedor-invitacion">
-        <img src="Invitacion Familia.jpg" alt="Invitación Familiar" class="invitacion-imagen">
-        
-        <a href="https://forms.gle/EdbCLF7JKwVsJtU8A" class="boton-link boton-formulario" target="_blank" title="Confirmar Asistencia">
+    <div id="invitacion-container">
+        <img id="invitacion-imagen" src="Invitacion Familia.jpg" alt="Invitación Familiar">
+
+        <div id="contenedor-animacion"></div>
+
+        <a href="https://forms.gle/EdbCLF7JKwVsJtU8A" class="boton-icono boton-formulario" target="_blank" title="Confirmar Asistencia">
             <img src="REG.png" alt="Formulario de Google">
         </a>
         
-        <a href="https://maps.app.goo.gl/J3Kh71qkStVaym2s9" class="boton-link boton-gps" target="_blank" title="Ver Ubicación">
+        <a href="https://maps.app.goo.gl/J3Kh71qkStVaym2s9" class="boton-icono boton-gps" target="_blank" title="Ver Ubicación">
             <img src="ub.png" alt="Ubicación GPS">
         </a>
     </div>
 
     <script>
-        function crearIconos() {
-            const numIconos = 25; // Número de iconos a generar
-            const iconoSrc = "Fam.png"; // Nombre del archivo del icono
-            
-            for (let i = 0; i < numIconos; i++) {
-                let icono = document.createElement('img');
-                icono.src = iconoSrc;
-                icono.classList.add('icono-animado');
-                icono.style.left = `${Math.random() * 100}vw`; // Posición horizontal aleatoria
-                icono.style.animationDelay = `${Math.random() * 5}s`; // Retraso aleatorio
-                document.body.appendChild(icono);
-            }
-        }
-        document.addEventListener('DOMContentLoaded', crearIconos);
-    </script>
+        const contenedorAnimacion = document.getElementById('contenedor-animacion');
+        const numIconos = 20;
+        const iconoSrc = "Fam.png";
 
+        function crearIcono() {
+            const icono = document.createElement('img');
+            icono.src = iconoSrc;
+            icono.classList.add('icono-flotante');
+
+            const randomLeft = Math.random() * 100 + '%';
+            const randomDelay = Math.random() * 8 + 's';
+            const randomSize = Math.random() * 20 + 20 + 'px'; // Tamaño entre 20 y 40px
+
+            icono.style.left = randomLeft;
+            icono.style.animationDelay = randomDelay;
+            icono.style.width = randomSize;
+
+            contenedorAnimacion.appendChild(icono);
+        }
+
+        for (let i = 0; i < numIconos; i++) {
+            crearIcono();
+        }
+    </script>
 </body>
 </html>
