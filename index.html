@@ -7,47 +7,48 @@
 
     <link rel="icon" type="image/png" href="Fam.png">
     
+    <!-- Metadatos para compartir -->
     <meta property="og:title" content="¡Invitación Especial!">
-    <meta property="og:description" content="Te invitamos a celebrar el dia de la Familia.">
+    <meta property="og:description" content="Te invitamos a celebrar el día de la Familia.">
     <meta property="og:image" content="https://deviouswind543.github.io/Dia_de_la_Familia/Invitacion%20Familia.jpg">
     <meta property="og:url" content="https://deviouswind543.github.io/Dia_de_la_Familia/">
     <meta property="og:type" content="website">
     
     <style>
         body {
-            margin: 0;
-            overflow-x: hidden;
+            font-family: sans-serif;
             background-color: #f0f0f0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        #invitacion-container {
-            position: relative;
-            max-width: 650px;
-            width: 100%;
-            margin-top: 50px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
             overflow: hidden;
+        }
+        
+        .contenedor-invitacion {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 10;
             background-color: #fff;
         }
 
-        #invitacion-imagen {
-            display: block;
+        .invitacion-imagen {
             width: 100%;
             height: auto;
+            display: block;
         }
-
-        .boton-icono {
+        
+        /* Estilos consistentes para botones */
+        .boton-link {
             position: absolute;
-            z-index: 10;
+            z-index: 20;
             display: block;
             background: none;
             border: none;
@@ -56,97 +57,79 @@
             transition: transform 0.3s ease;
         }
 
-        .boton-icono img {
+        .boton-link img {
             width: 100%;
             height: auto;
+            display: block;
         }
 
-        .boton-icono:hover {
+        .boton-link:hover {
             transform: scale(1.1);
         }
         
-        /* Posiciones ajustadas para los botones, usando porcentajes */
+        /* Posiciones relativas a la imagen */
         .boton-formulario {
-            top: 57.6%;
-            left: 45.9%;
-            width: 5.5%; /* Ajuste de tamaño para que sea más consistente */
+            top: 57.5%; /* Ajustar según el diseño */
+            left: 45.7%;
+            width: 5.5%;
         }
 
         .boton-gps {
-            bottom: 23%;
-            right: 71.8%;
-            width: 5%; /* Ajuste de tamaño para que sea más consistente */
+            top: 71.2%; /* Ajustar según el diseño */
+            left: 22.9%;
+            width: 5.5%;
         }
         
-        /* Contenedor para los iconos flotantes */
-        #contenedor-animacion {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
+        /* Animación de iconos flotantes */
+        @keyframes subir {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
-        .icono-flotante {
-            position: absolute;
+        .icono-animado {
+            position: fixed;
             bottom: -50px;
-            width: 25px;
-            height: auto;
-            opacity: 0;
-            animation: flotar 15s infinite linear;
+            width: 30px;
+            height: 30px;
+            animation: subir 8s linear infinite;
+            z-index: 5;
         }
 
-        @keyframes flotar {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-        }
+        .icono-animado:nth-child(2n) { animation-duration: 9s; animation-delay: 2s; }
+        .icono-animado:nth-child(3n) { animation-duration: 7s; animation-delay: 4s; }
+        .icono-animado:nth-child(5n) { animation-duration: 10s; animation-delay: 1s; }
     </style>
 </head>
 <body>
 
-    <div id="invitacion-container">
-        <img id="invitacion-imagen" src="Invitacion Familia.jpg" alt="Invitación Familiar">
-
-        <div id="contenedor-animacion"></div>
-
-        <a href="https://forms.gle/EdbCLF7JKwVsJtU8A" class="boton-icono boton-formulario" target="_blank" title="Confirmar Asistencia">
+    <div class="contenedor-invitacion">
+        <img src="Invitacion Familia.jpg" alt="Invitación Familiar" class="invitacion-imagen">
+        
+        <a href="https://forms.gle/EdbCLF7JKwVsJtU8A" class="boton-link boton-formulario" target="_blank" title="Confirmar Asistencia">
             <img src="REG.png" alt="Formulario de Google">
         </a>
         
-        <a href="https://maps.app.goo.gl/J3Kh71qkStVaym2s9" class="boton-icono boton-gps" target="_blank" title="Ver Ubicación">
+        <a href="https://maps.app.goo.gl/J3Kh71qkStVaym2s9" class="boton-link boton-gps" target="_blank" title="Ver Ubicación">
             <img src="ub.png" alt="Ubicación GPS">
         </a>
     </div>
 
     <script>
-        const contenedorAnimacion = document.getElementById('contenedor-animacion');
-        const numIconos = 20;
-        const iconoSrc = "Fam.png";
-
-        function crearIcono() {
-            const icono = document.createElement('img');
-            icono.src = iconoSrc;
-            icono.classList.add('icono-flotante');
-
-            const randomLeft = Math.random() * 100 + '%';
-            const randomDelay = Math.random() * 8 + 's';
-            const randomSize = Math.random() * 20 + 20 + 'px'; // Tamaño entre 20 y 40px
-
-            icono.style.left = randomLeft;
-            icono.style.animationDelay = randomDelay;
-            icono.style.width = randomSize;
-
-            contenedorAnimacion.appendChild(icono);
+        function crearIconos() {
+            const numIconos = 100;
+            const iconoSrc = "Fam.png";
+            
+            for (let i = 0; i < numIconos; i++) {
+                let icono = document.createElement('img');
+                icono.src = iconoSrc;
+                icono.classList.add('icono-animado');
+                icono.style.left = `${Math.random() * 100}vw`;
+                icono.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(icono);
+            }
         }
-
-        for (let i = 0; i < numIconos; i++) {
-            crearIcono();
-        }
+        document.addEventListener('DOMContentLoaded', crearIconos);
     </script>
+
 </body>
 </html>
