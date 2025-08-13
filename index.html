@@ -38,27 +38,17 @@
             height: auto;
             display: block;
         }
-
-        .contenedor-botones {
-            position: absolute;
-            bottom: 6.5%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            gap: 15vw;
-            width: 80%;
-        }
-
+        
+        /* Estilos base para los enlaces de los botones */
         .boton-link {
-            display: block;
+            position: absolute; /* Esto permite moverlos libremente dentro del contenedor */
             border: none;
             cursor: pointer;
             text-decoration: none;
             background: none;
             padding: 0;
             width: 12vw;
-            max-width: 60px;
+            max-width: 33.3px;
         }
 
         .boton-link img {
@@ -66,13 +56,30 @@
             height: auto;
         }
         
+        /* Estilos para el botón del formulario (ejemplo: arriba a la izquierda) */
+        .boton-formulario {
+            top: 57.5%;
+            left: 45.6%;
+        }
+
+        /* Estilos para el botón de GPS (ejemplo: abajo a la derecha) */
+        .boton-gps {
+            bottom: 22.5%;
+            right: 71.6%;
+        }
+        
+        /* Media query para móviles, ajusta las posiciones si es necesario */
         @media (max-width: 600px) {
-            .contenedor-botones {
-                bottom: 8%;
-                gap: 12vw;
-            }
             .boton-link {
                 width: 15vw;
+            }
+            .boton-formulario {
+                top: 8%;
+                left: 8%;
+            }
+            .boton-gps {
+                bottom: 8%;
+                right: 8%;
             }
         }
     </style>
@@ -82,15 +89,13 @@
     <div class="contenedor-invitacion">
         <img src="Invitacion Familia.jpg" alt="Invitación Familiar" class="invitacion-imagen">
         
-        <div class="contenedor-botones">
-            <a href="URL_DE_TU_FORMULARIO" class="boton-link" target="_blank" title="Confirmar Asistencia">
-                <img src="icono_formulario.png" alt="Formulario de Google">
-            </a>
-            
-            <a href="https://maps.google.com/?q=Campamento+Cristiano+Inspiracion,+Manta,+Ecuador" class="boton-link" target="_blank" title="Ver Ubicación">
-                <img src="icono_gps.png" alt="Ubicación GPS">
-            </a>
-        </div>
+        <a href="URL_DE_TU_FORMULARIO" class="boton-link boton-formulario" target="_blank" title="Confirmar Asistencia">
+            <img src="REG.png" alt="Formulario de Google">
+        </a>
+        
+        <a href="https://maps.app.goo.gl/J3Kh71qkStVaym2s9" class="boton-link boton-gps" target="_blank" title="Ver Ubicación">
+            <img src="ub.png" alt="Ubicación GPS">
+        </a>
     </div>
 
 </body>
